@@ -1,6 +1,7 @@
 #include<iostream>
 #include<malloc.h>
 using namespace std;
+
 typedef int ElementType;
 typedef struct TreeNode *BinTree;
 struct TreeNode{
@@ -9,101 +10,103 @@ struct TreeNode{
 	BinTree Right;
 };
 
-// æŸ¥æ‰¾é€’å½’å®ç° 
+// ²éÕÒµİ¹éÊµÏÖ 
 BinTree Find(ElementType X,BinTree BST){
-	if(!BST)  // å¦‚æœæ ¹ç»“ç‚¹ä¸ºç©ºï¼Œè¿”å› NULL 
+	if(!BST)  // Èç¹û¸ù½áµãÎª¿Õ£¬·µ»Ø NULL 
 		return NULL; 
-	if(X < BST->Data) // æ¯”æ ¹ç»“ç‚¹å°ï¼Œå»å·¦å­æ ‘æŸ¥æ‰¾ 
+	if(X < BST->Data) // ±È¸ù½áµãĞ¡£¬È¥×ó×ÓÊ÷²éÕÒ 
 		return Find(X,BST->Left); 
-	else if(BST->Data < X)  // æ¯”æ ¹ç»“ç‚¹å¤§ï¼Œå»å³å­æ ‘æŸ¥æ‰¾ 
+	else if(BST->Data < X)  // ±È¸ù½áµã´ó£¬È¥ÓÒ×ÓÊ÷²éÕÒ 
 		return Find(X,BST->Right);
-	else if(BST->Data == X) // æ‰¾åˆ°äº† 
+	else if(BST->Data == X) // ÕÒµ½ÁË 
 		return BST;
 }
 
-// æŸ¥æ‰¾éé€’å½’å®ç°
+// ²éÕÒ·Çµİ¹éÊµÏÖ
 BinTree IterFind(ElementType X,BinTree BST){
 	while(BST){
 		if(X < BST->Data)
 			BST = BST->Left;
-		else if(BST->Data < X)  // æ¯”æ ¹ç»“ç‚¹å¤§ï¼Œå»å³å­æ ‘æŸ¥æ‰¾ 
+		else if(BST->Data < X)  // ±È¸ù½áµã´ó£¬È¥ÓÒ×ÓÊ÷²éÕÒ 
 			BST = BST->Right;
-		else if(BST->Data == X) // æ‰¾åˆ°äº† 
+		else if(BST->Data == X) // ÕÒµ½ÁË 
 			return BST;
 	}
 	return NULL;
 } 
 
-// æŸ¥æ‰¾æœ€å°å€¼çš„é€’å½’å®ç°
+// ²éÕÒ×îĞ¡ÖµµÄµİ¹éÊµÏÖ
 BinTree FindMin(BinTree BST){
-	if(!BST)    // å¦‚æœä¸ºç©ºäº†ï¼Œè¿”å› NULL 
+	if(!BST)    // Èç¹ûÎª¿ÕÁË£¬·µ»Ø NULL 
 		return NULL;  
-	else if(BST->Left)   // è¿˜å­˜åœ¨å·¦å­æ ‘ï¼Œæ²¿å·¦åˆ†æ”¯ç»§ç»­æŸ¥æ‰¾ 
+	else if(BST->Left)   // »¹´æÔÚ×ó×ÓÊ÷£¬ÑØ×ó·ÖÖ§¼ÌĞø²éÕÒ 
 		return FindMin(BST->Left);
-	else  // æ‰¾åˆ°äº† 
+	else  // ÕÒµ½ÁË 
 		return BST;
 } 
 
-// æŸ¥æ‰¾æœ€å¤§å€¼çš„éé€’å½’å®ç°
+// ²éÕÒ×î´óÖµµÄ·Çµİ¹éÊµÏÖ
 BinTree FindMax(BinTree BST){
-	if(BST)  // å¦‚æœä¸ç©º 
-		while(BST->Right)   // åªè¦å³å­æ ‘è¿˜å­˜åœ¨ 
+	if(BST)  // Èç¹û²»¿Õ 
+		while(BST->Right)   // Ö»ÒªÓÒ×ÓÊ÷»¹´æÔÚ 
 			BST = BST->Right;
 	return BST;
 } 
 
-// æ’å…¥
+// ²åÈë
 BinTree Insert(ElementType X,BinTree BST){
-	if(!BST){  // å¦‚æœä¸ºç©ºï¼Œåˆå§‹åŒ–è¯¥ç»“ç‚¹ 
+	if(!BST){  // Èç¹ûÎª¿Õ£¬³õÊ¼»¯¸Ã½áµã 
 		BST = (BinTree)malloc(sizeof(struct TreeNode));
 		BST->Data = X;
 		BST->Left = NULL;
 		BST->Right = NULL;
-	}else{ // ä¸ä¸ºç©º 
-		if(X < BST->Data)  // å¦‚æœå°ï¼ŒæŒ‚åœ¨å·¦è¾¹ 
+	}else{ // ²»Îª¿Õ 
+		if(X < BST->Data)  // Èç¹ûĞ¡£¬¹ÒÔÚ×ó±ß 
 			BST->Left = Insert(X,BST->Left);
-		else if(BST->Data < X)  // å¦‚æœå¤§ï¼ŒæŒ‚åœ¨å³è¾¹ 
+		else if(BST->Data < X)  // Èç¹û´ó£¬¹ÒÔÚÓÒ±ß 
 			BST->Right = Insert(X,BST->Right);
-		// å¦‚æœç›¸ç­‰ï¼Œä»€ä¹ˆéƒ½ä¸ç”¨åš 
+		// Èç¹ûÏàµÈ£¬Ê²Ã´¶¼²»ÓÃ×ö 
 	}
 	return BST;
 } 
 
-// åˆ é™¤
+// É¾³ı
 BinTree Delete(ElementType X,BinTree BST){
 	BinTree tmp;
-	if(!BST)
-		cout<<"è¦åˆ é™¤çš„å…ƒç´ æœªæ‰¾åˆ°";
-	else if(X < BST->Data)   // X æ¯”å½“å‰ç»“ç‚¹å€¼å°ï¼Œåœ¨å·¦å­æ ‘ç»§ç»­æŸ¥æ‰¾åˆ é™¤ 
+	if (!BST)
+		cout << "ÒªÉ¾³ıµÄÔªËØÎ´ÕÒµ½ ";
+	else if(X < BST->Data)   // X ±Èµ±Ç°½áµãÖµĞ¡£¬ÔÚ×ó×ÓÊ÷¼ÌĞø²éÕÒÉ¾³ı 
 		BST->Left = Delete(X,BST->Left);
-	else if(BST->Data < X)   // x æ¯”å½“å‰ç»“ç‚¹å€¼å¤§ï¼Œåœ¨å³å­æ ‘ç»§ç»­æŸ¥æ‰¾åˆ é™¤ 
+	else if(BST->Data < X)   // x ±Èµ±Ç°½áµãÖµ´ó£¬ÔÚÓÒ×ÓÊ÷¼ÌĞø²éÕÒÉ¾³ı 
 		BST->Right = Delete(X,BST->Right);
-	else{  //  æ‰¾åˆ°è¢«åˆ é™¤ç»“ç‚¹ 
-		if(BST->Left && BST->Right){  // è¢«åˆ é™¤ç»“ç‚¹æœ‰ä¿©å­©å­ç»“ç‚¹ 
-			tmp = FindMin(BST->Right);   // æ‰¾åˆ°å³å­æ ‘ä¸­å€¼æœ€å°çš„
-			BST->Data = tmp->Data;     // ç”¨æ‰¾åˆ°çš„å€¼è¦†ç›–å½“å‰ç»“ç‚¹ 
-			BST->Right = Delete(tmp->Data,BST->Right);    // æŠŠå‰é¢æ‰¾åˆ°çš„å³å­æ ‘æœ€å°å€¼ç»“ç‚¹åˆ é™¤ 
-		}else{  // è¢«åˆ é™¤ç»“ç‚¹åªæœ‰ä¸€ä¸ªå­©å­ç»“ç‚¹æˆ–æ²¡æœ‰å­©å­ç»“ç‚¹ 
+	else{  //  ÕÒµ½±»É¾³ı½áµã 
+		if(BST->Left && BST->Right){  // ±»É¾³ı½áµãÓĞÁ©º¢×Ó½áµã 
+			tmp = FindMin(BST->Right);   // ÕÒµ½ÓÒ×ÓÊ÷ÖĞÖµ×îĞ¡µÄ
+			BST->Data = tmp->Data;     // ÓÃÕÒµ½µÄÖµ¸²¸Çµ±Ç°½áµã 
+			BST->Right = Delete(tmp->Data,BST->Right);    // °ÑÇ°ÃæÕÒµ½µÄÓÒ×ÓÊ÷×îĞ¡Öµ½áµãÉ¾³ı 
+		}else{  // ±»É¾³ı½áµãÖ»ÓĞÒ»¸öº¢×Ó½áµã»òÃ»ÓĞº¢×Ó½áµã 
 			tmp = BST;
-			else if(!BST->Right)  // åªæœ‰å·¦å­©å­ç»“ç‚¹ 
+			if(!BST->Right)  // Ö»ÓĞ×óº¢×Ó½áµã 
 				BST = BST->Left;
-			else if(!BST->Left)  // åªæœ‰å³å­©å­ç»“ç‚¹ 
+			else  // Ö»ÓĞÓÒº¢×Ó½áµã 
 				BST = BST->Right;
-                         free(tmp);
+            free(tmp);
 		}
 	}
 	return BST;
 } 
 
-// ä¸­åºéå† 
+// ÖĞĞò±éÀú 
 void  InOrderTraversal(BinTree BT){
 	if(BT){
-		InOrderTraversal(BT->Left);  // è¿›å…¥å·¦å­æ ‘ 
-		cout<<BT->Data;  // æ‰“å°æ ¹ 
-		InOrderTraversal(BT->Right);  // è¿›å…¥å³å­æ ‘ 
+		InOrderTraversal(BT->Left);  // ½øÈë×ó×ÓÊ÷ 
+		cout<<BT->Data;  // ´òÓ¡¸ù 
+		InOrderTraversal(BT->Right);  // ½øÈëÓÒ×ÓÊ÷ 
 	}
 }
 int main(){
+
+	cout << "²âÊÔ";
 	BinTree BST = NULL;
 	BST = Insert(5,BST); 
 	BST = Insert(7,BST); 
@@ -123,14 +126,14 @@ int main(){
 			\      \
 			 2      9
 	*/
-	cout<<"ä¸­åºéå†çš„ç»“æœæ˜¯ï¼š"; 
+	cout<<"ÖĞĞò±éÀúµÄ½á¹ûÊÇ£º "; 
 	InOrderTraversal(BST);
 	cout<<endl;
-	cout<<"æŸ¥æ‰¾æœ€å°å€¼æ˜¯ï¼š"<<FindMin(BST)->Data<<endl;
-	cout<<"æŸ¥æ‰¾æœ€å¤§å€¼æ˜¯ï¼š"<<FindMax(BST)->Data<<endl; 
-	cout<<"æŸ¥æ‰¾å€¼ä¸º3çš„ç»“ç‚¹å·¦å­æ ‘ç»“ç‚¹å€¼ä¸ºï¼š"<<Find(3,BST)->Left->Data<<endl;
-	cout<<"æŸ¥æ‰¾å€¼ä¸º7çš„ç»“ç‚¹å³å­æ ‘ç»“ç‚¹å€¼ä¸ºï¼š"<<IterFind(7,BST)->Right->Data<<endl;
-	cout<<"åˆ é™¤å€¼ä¸º5çš„ç»“ç‚¹"<<endl;
+	cout<<"²éÕÒ×îĞ¡ÖµÊÇ£º "<<FindMin(BST)->Data<<endl;
+	cout<<"²éÕÒ×î´óÖµÊÇ£º "<<FindMax(BST)->Data<<endl; 
+	cout<<"²éÕÒÖµÎª3µÄ½áµã×ó×ÓÊ÷½áµãÖµÎª£º "<<Find(3,BST)->Left->Data<<endl;
+	cout<<"²éÕÒÖµÎª7µÄ½áµãÓÒ×ÓÊ÷½áµãÖµÎª£º "<<IterFind(7,BST)->Right->Data<<endl;
+	cout<<"É¾³ıÖµÎª5µÄ½áµã "<<endl;
 	Delete(5,BST);
 	/*
 			    6
@@ -141,7 +144,7 @@ int main(){
 			\      \
 			 2      9
 	*/
-	cout<<"ä¸­åºéå†çš„ç»“æœæ˜¯ï¼š"; 
+	cout<<"ÖĞĞò±éÀúµÄ½á¹ûÊÇ£º "; 
 	InOrderTraversal(BST);
 	cout<<endl;
 	return 0;
