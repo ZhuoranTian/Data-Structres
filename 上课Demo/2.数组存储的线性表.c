@@ -3,7 +3,7 @@
 #define MAXSIZE 100  // MAXSIZE 定义为 Data 数组的大小
 typedef int ElementType;  // ElementType 可定义为任意类型
 typedef struct LNode *List; 
-struct LNode{
+struct LNode{ //定义一个节点
    ElementType Data[MAXSIZE]; 
    int Last;  // Last 定义线性表的最后一个元素
 };

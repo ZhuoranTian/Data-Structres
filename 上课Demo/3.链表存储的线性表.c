@@ -25,7 +25,7 @@ List MakeEmpty(){
 
 //求表长 
 int Length(List L){
-	List p = L;
+	List p = L; //p为指向L的指针
 	int len=0;
 	while(p){  // 当 p 不为空 
 		p = p->Next;
@@ -68,7 +68,7 @@ List Insert(ElementType X,int i,List L){
 	if(i == 1){     // 新结点插入在表头 
 		s = (List)malloc(sizeof(struct LNode));
 		s->Data = X;
-		s->Next = L;
+		s->Next = L; // 指向L
 		return s;     //插入的结点为头结点 
 	}
 	p = FindKth(i-1,L);   // 找到第 i-1 个结点
@@ -116,7 +116,7 @@ List Delete(int i,List L){
 // 输出链表元素 
 void Print(List L){
 	List t;
-	int flag = 1;
+	int flag = 1; //flag是为了设置起止
 	printf("当前链表为：");
 	for(t = L;t;t =t->Next){
 		printf("%d  ",t->Data);
