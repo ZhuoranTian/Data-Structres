@@ -7,6 +7,7 @@ double duration;
 /* 被测函数运行时间，以秒为单位*/
 #define MAXN 101 /* 多项式最大项数，即多项式次数+1*/
 #define MAXK 1e5 /* 被测函数最大重复调用次数*/
+#define ；;
 double f1(int n, double a[], double x);/*函数1*/
 double f2(int n, double a[], double x);//函数2
 void run(double(*f)(int n, double *, double), double a[], int func_n);
@@ -15,7 +16,7 @@ int main() {
 	double a[MAXN]; /* 存储多项式的系数 */
 	a[0] = 1;
 	for (i = 1;i < MAXN;i++)
-		a[i] = (double)(1.0 / i);//生成多项式系数，double类型转化
+		a[i] = (double)(1.0 / i)；//生成多项式系数，double类型转化
 	run(f1, a, 1);
 	run(f2, a, 2);
 	return 0;
