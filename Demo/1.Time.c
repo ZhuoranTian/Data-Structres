@@ -6,7 +6,7 @@ clock_t start,end;
 double duration;
 /* 被测函数运行时间，以秒为单位*/
 #define MAXN 101 /* 多项式最大项数，即多项式次数+1*/
-#define MAXK 1e5 /* 被测函数最大重复调用次数*/
+#define MAXK 1e5 /* 被测函数最大重复调用次数 */
 double f1(int n,double a[],double x);
 double f2(int n,double a[],double x);
 void run(double(*f)(int n,double *,double ),double a[],int func_n);
