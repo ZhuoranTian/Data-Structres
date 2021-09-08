@@ -20,7 +20,7 @@ int main(){
 	run(f2,a,2);
 	return 0;
 } 
-double f1(int n,double a[],double x){
+double f1(int n,double a[],double x){//test
 	int i;
 	double p=a[0];
 	for(i=1;i<n;i++)
