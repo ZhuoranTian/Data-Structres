@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
-project(1 C)
+project(1 CXX)
 
 set(CMAKE_C_STANDARD 11)
 
 add_executable(1
-        Demo/1.Time.c)
+        Temp/Temp/Struct.cpp)
 #test
 #test Update
 #test2
