@@ -21,7 +21,7 @@ int main(){
 	return 0;
 } 
 double f1(int n,double a[],double x){//test
-	int i;
+	int i;//test
 	double p=a[0];
 	for(i=1;i<n;i++)
 		p+=(a[i]*pow(x,i));
